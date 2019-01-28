@@ -94,3 +94,11 @@ bottomContent.children['2'].children['0'].textContent = siteContent['main-conten
 bottomContent.children['2'].children['1'].textContent = siteContent['main-content']['vision-content'];
 
 // ––– Contact Section ––– //
+const contact = document.querySelector('.contact');
+contact.children['0'].textContent = siteContent.contact['contact-h4'];
+contact.children['1'].textContent = siteContent.contact['address'];
+contact.children['2'].textContent = siteContent.contact['phone'];
+contact.children['3'].textContent = siteContent.contact['email'];
+
+// ––– Footer ––– //
+document.getElementsByTagName('footer')['0'].children['0'].textContent = siteContent.footer.copyright;
