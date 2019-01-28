@@ -38,8 +38,8 @@ const siteContent = {
 };
 
 // Example: Update the img src for the logo
-let logo = document.getElementById("logo-img");
-logo.setAttribute('src', siteContent["nav"]["img-src"])
+let logo = document.getElementById('logo-img');
+logo.setAttribute('src', siteContent['nav']['img-src'])
 
 // ––– nav.a ––– //
 // store nav text in an array
@@ -79,7 +79,7 @@ about.children['0'].textContent = siteContent['main-content']['about-h4'];
 about.children['1'].textContent = siteContent['main-content']['about-content'];
 
 // img#middle-img
-mainContent.children['1'].src = siteContent['main-content']['middle-img-src'];
+document.getElementById('middle-img').src = siteContent['main-content']['middle-img-src'];
 
 // div.bottom-content
 const bottomContent = mainContent.children['2']; // Services, Product, Vision
