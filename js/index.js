@@ -102,3 +102,19 @@ contact.children['3'].textContent = siteContent.contact['email'];
 
 // ––– Footer ––– //
 document.getElementsByTagName('footer')['0'].children['0'].textContent = siteContent.footer.copyright;
+
+
+// ––– Add Two Nav Items –––
+// create new elements
+const newNavOne = document.createElement('a');
+const newNavTwo = document.createElement('a');
+newNavOne.textContent = 'Team';
+newNavTwo.textContent = 'Bad Idea';
+// append new elements
+document.getElementsByTagName('nav')['0'].prepend(newNavOne);
+document.getElementsByTagName('nav')['0'].appendChild(newNavTwo);
+
+// Set nav text color
+for (let item of document.querySelectorAll('nav a')) {
+  item.style.color = 'green';
+}
