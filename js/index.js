@@ -40,3 +40,20 @@ const siteContent = {
 // Example: Update the img src for the logo
 let logo = document.getElementById("logo-img");
 logo.setAttribute('src', siteContent["nav"]["img-src"])
+
+// ––– nav.a ––– //
+// store nav text in an array
+const navList = [];
+for (let item in siteContent.nav) {
+  if (item.toString().includes('nav')) {
+    navList.push(siteContent.nav[item]);
+  }
+}
+// get 'nav a' elements
+const navLinks = document.querySelectorAll('nav a');
+// set the text for each nav link
+for (let i = 0; i < navList.length; i++) {
+  navLinks[i].textContent = navList[i];
+}
+
+// ––– nav.a ––– //
