@@ -56,4 +56,41 @@ for (let i = 0; i < navList.length; i++) {
   navLinks[i].textContent = navList[i];
 }
 
-// ––– nav.a ––– //
+// ––– CTA ––– //
+// h1
+document.querySelector('.cta-text').children['0'].textContent = siteContent.cta['h1'];
+// button
+document.querySelector('.cta-text').children['1'].textContent = siteContent.cta['button'];
+//  img
+document.getElementById('cta-img').src = siteContent.cta['img-src'];
+
+// ––– Main Content Section ––– //
+const mainContent = document.querySelector('.main-content');
+
+// div.top-content
+const topContent = mainContent.children['0']; // Features and About divs
+const features = topContent.children['0'];
+const about = topContent.children['1'];
+// set features content
+features.children['0'].textContent = siteContent['main-content']['features-h4'];
+features.children['1'].textContent = siteContent['main-content']['features-content'];
+// set about content
+about.children['0'].textContent = siteContent['main-content']['about-h4'];
+about.children['1'].textContent = siteContent['main-content']['about-content'];
+
+// img#middle-img
+mainContent.children['1'].src = siteContent['main-content']['middle-img-src'];
+
+// div.bottom-content
+const bottomContent = mainContent.children['2']; // Services, Product, Vision
+// set services content
+bottomContent.children['0'].children['0'].textContent = siteContent['main-content']['services-h4'];
+bottomContent.children['0'].children['1'].textContent = siteContent['main-content']['services-content'];
+// set product content
+bottomContent.children['1'].children['0'].textContent = siteContent['main-content']['product-h4'];
+bottomContent.children['1'].children['1'].textContent = siteContent['main-content']['product-content'];
+// set vision content
+bottomContent.children['2'].children['0'].textContent = siteContent['main-content']['vision-h4'];
+bottomContent.children['2'].children['1'].textContent = siteContent['main-content']['vision-content'];
+
+// ––– Contact Section ––– //
