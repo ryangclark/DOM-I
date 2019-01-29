@@ -1,64 +1,77 @@
 // get digit elements
-const digits = document.querySelectorAll('digit');
-// function to toggle .redDigit class
-
+const digits = document.querySelectorAll('.digit');
 const secondTens = document.getElementById('secondTens');
 const secondOnes = document.getElementById('secondOnes');
 const msTens = document.getElementById('msTens');
 const msHundreds = document.getElementById('msHundreds');
 
-// const test = 10000;
-// console.log(test.toString().split('').slice(0,4));
-
 // get buttons
 const startButton = document.getElementById('start');
+const stopButton = document.getElementById('stop');
 const resetButton = document.getElementById('reset');
-// by default, Reset Button is disabled
-// resetButton.disabled = true;
-
-// Start button event
-// startButton.onclick = counter();
+// by default, Stop Button and Reset Button are disabled
+stopButton.disabled = true;
+resetButton.disabled = true;
 
 function counter() {
-    // digit color to black
-    digits.forEach(digit => digit.classList.remove('redDigit'));
-    // disable start button
+    // button things
     startButton.disabled = true;
+    stopButton.disabled = false;
+    // set start time
+    let startTime = Date.now();
 
     // begin calling the counter callback
-    let intervalID = window.setInterval(countCB, 100);
-    let startTime = Date.now().toString().split(7,12);
+    let intervalID = window.setInterval(countCB, 10);
 
     function countCB() {
-        // new timer
-        time = Date.now().toString().split(7,12);
-        console.log(time - startTime);
-        // while count is less than 10 seconds
-        if ((time - startTime) <= 10000) {
-            let intervalBreakDown = startTime.split('').slice(0,4);
-            console.log(time - startTime);
-            secondTens.textContent = intervalBreakDown[0];
-            secondOnes.textContent = intervalBreakDown[1];
-            msTens.textContent = intervalBreakDown[2];
-            msHundreds.textContent = intervalBreakDown[3];
-        } else {
+        let timeElapsed = Date.now() - startTime;
+        // update display while under 10 seconds AND while Stop Button hasn't been hit
+        if (timeElapsed <= 10000 && !stopButton.disabled) {
+            let intervalBreakDown = timeElapsed.toString().padStart(5, '0').split('');
+            secondTens.textContent  = intervalBreakDown[0];
+            secondOnes.textContent  = intervalBreakDown[1];
+            msTens.textContent      = intervalBreakDown[2];
+            msHundreds.textContent  = intervalBreakDown[3];
+        } else if (stopButton.disabled) {
             clearInterval(intervalID);
-            console.log('clearInterval');
             // enable reset button
             resetButton.disabled = false;
             // digit color to red
             digits.forEach(digit => digit.classList.add('redDigit'));
+        } else {
+            clearInterval(intervalID);
+            console.log('clearInterval()');
+            // enable reset button
+            resetButton.disabled = false;
+            // digit color to red
+            digits.forEach(digit => digit.classList.add('redDigit'));
+            // hardcode the final number
+            secondTens.textContent = '1';
+            secondOnes.textContent = '0';
+            msTens.textContent = '0';
+            msHundreds.textContent = '0';
         }
     }
 }
 
-// const testInterval = window.setInterval(testCB, 1000);
-
-var d = Date.now();
-// var t = d.toLocaleTimeString();
-console.log(d);
-console.log(d.toString().slice(8,12));
-
-function testCB() {
-    console.log('Test Interval:', testInterval);
+function stopCounter() {
+    stopButton.disabled = true;
 }
+
+function resetCounter() {
+    // digit color to black
+    digits.forEach(digit => digit.classList.remove('redDigit'));
+    // disable Reset Button
+    resetButton.disabled = true;
+    // enable Start Button
+    startButton.disabled = false;
+    // zero it out
+    secondTens.textContent = '0';
+    secondOnes.textContent = '0';
+    msTens.textContent = '0';
+    msHundreds.textContent = '0';
+}
+
+// To show what Date.now() returns
+var d = Date.now();
+console.log('Date now:', d);
