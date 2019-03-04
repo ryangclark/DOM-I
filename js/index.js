@@ -38,5 +38,83 @@ const siteContent = {
 };
 
 // Example: Update the img src for the logo
-let logo = document.getElementById("logo-img");
-logo.setAttribute('src', siteContent["nav"]["img-src"])
+let logo = document.getElementById('logo-img');
+logo.setAttribute('src', siteContent['nav']['img-src'])
+
+// ––– nav.a ––– //
+// store nav text in an array
+const navList = [];
+for (let item in siteContent.nav) {
+  if (item.toString().includes('nav')) {
+    navList.push(siteContent.nav[item]);
+  }
+}
+// get 'nav a' elements
+const navLinks = document.querySelectorAll('nav a');
+// set the text for each nav link
+for (let i = 0; i < navList.length; i++) {
+  navLinks[i].textContent = navList[i];
+}
+
+// ––– CTA ––– //
+// h1
+document.querySelector('.cta-text').children['0'].textContent = siteContent.cta['h1'];
+// button
+document.querySelector('.cta-text').children['1'].textContent = siteContent.cta['button'];
+//  img
+document.getElementById('cta-img').src = siteContent.cta['img-src'];
+
+// ––– Main Content Section ––– //
+const mainContent = document.querySelector('.main-content');
+
+// div.top-content
+const topContent = mainContent.children['0']; // Features and About divs
+const features = topContent.children['0'];
+const about = topContent.children['1'];
+// set features content
+features.children['0'].textContent = siteContent['main-content']['features-h4'];
+features.children['1'].textContent = siteContent['main-content']['features-content'];
+// set about content
+about.children['0'].textContent = siteContent['main-content']['about-h4'];
+about.children['1'].textContent = siteContent['main-content']['about-content'];
+
+// img#middle-img
+document.getElementById('middle-img').src = siteContent['main-content']['middle-img-src'];
+
+// div.bottom-content
+const bottomContent = mainContent.children['2']; // Services, Product, Vision
+// set services content
+bottomContent.children['0'].children['0'].textContent = siteContent['main-content']['services-h4'];
+bottomContent.children['0'].children['1'].textContent = siteContent['main-content']['services-content'];
+// set product content
+bottomContent.children['1'].children['0'].textContent = siteContent['main-content']['product-h4'];
+bottomContent.children['1'].children['1'].textContent = siteContent['main-content']['product-content'];
+// set vision content
+bottomContent.children['2'].children['0'].textContent = siteContent['main-content']['vision-h4'];
+bottomContent.children['2'].children['1'].textContent = siteContent['main-content']['vision-content'];
+
+// ––– Contact Section ––– //
+const contact = document.querySelector('.contact');
+contact.children['0'].textContent = siteContent.contact['contact-h4'];
+contact.children['1'].textContent = siteContent.contact['address'];
+contact.children['2'].textContent = siteContent.contact['phone'];
+contact.children['3'].textContent = siteContent.contact['email'];
+
+// ––– Footer ––– //
+document.getElementsByTagName('footer')['0'].children['0'].textContent = siteContent.footer.copyright;
+
+
+// ––– Add Two Nav Items –––
+// create new elements
+const newNavOne = document.createElement('a');
+const newNavTwo = document.createElement('a');
+newNavOne.textContent = 'Team';
+newNavTwo.textContent = 'Bad Idea';
+// append new elements
+document.getElementsByTagName('nav')['0'].prepend(newNavOne);
+document.getElementsByTagName('nav')['0'].appendChild(newNavTwo);
+
+// Set nav text color
+for (let item of document.querySelectorAll('nav a')) {
+  item.style.color = 'green';
+}
